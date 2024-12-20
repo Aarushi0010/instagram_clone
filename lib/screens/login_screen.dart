@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/widgets/textfield_input.dart';
@@ -30,8 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           children: [
             Flexible(
-              child: Container(),
               flex: 2,
+              child: Container(),
             ),
             //svg image
             SvgPicture.asset(
@@ -59,6 +60,47 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 24),
 
             //login button
+            InkWell(
+              child: Container(
+                width: double.infinity,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                decoration: const ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                    Radius.circular(4),
+                  )),
+                  color: Colors.blue,
+                ),
+                child: const Text('Log in'),
+              ),
+            ),
+            Flexible(
+              flex: 2,
+              child: Container(),
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: const Text("Don't have an account? "),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: const Text(
+                      "sign up ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
