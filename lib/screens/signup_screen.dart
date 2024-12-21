@@ -3,21 +3,25 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/widgets/textfield_input.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _bioController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _bioController.dispose();
+    _usernameController.dispose();
     super.dispose();
   }
 
@@ -33,6 +37,27 @@ class _LoginScreenState extends State<LoginScreen> {
               flex: 2,
               child: Container(),
             ),
+
+            //circular avatar
+            Stack(
+              children: [
+                const CircleAvatar(
+                  radius: 64,
+                  backgroundImage: NetworkImage(
+                      'https://images.unsplash.com/photo-1721332149274-586f2604884d?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+                ),
+                Positioned(
+                    bottom: -10,
+                    left: 80,
+                    child: IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.add_a_photo)))
+              ],
+            ),
+
+            const SizedBox(
+              height: 24,
+            ),
+
             //svg image
             SvgPicture.asset(
               'assets/ic_instagram.svg',
@@ -41,6 +66,13 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 64,
             ),
             const SizedBox(height: 64),
+
+            //text field for username
+            TextFieldInput(
+                textEditingController: _usernameController,
+                hintText: "Enter your username",
+                textInputType: TextInputType.text),
+            const SizedBox(height: 24),
 
             //text field for email
             TextFieldInput(
@@ -56,6 +88,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 textInputType: TextInputType.text,
                 isPass: true),
 
+            const SizedBox(height: 24),
+
+            //text field for bio
+            TextFieldInput(
+                textEditingController: _bioController,
+                hintText: "Enter your Bio",
+                textInputType: TextInputType.text),
             const SizedBox(height: 24),
 
             //login button
